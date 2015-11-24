@@ -1,10 +1,12 @@
 Package: AcceptanceSampling
 Type: Package
 Title: Creation and Evaluation of Acceptance Sampling Plans
-Version: 1.0-4
-Date: 2015-07-09
-Author: Andreas Kiermeier <Andreas.Kiermeier@gmail.com>
-Maintainer: Andreas Kiermeier <Andreas.Kiermeier@gmail.com>
+Version: 1.0-5
+Date: 2015-11-24
+Authors@R: c(person("Andreas", "Kiermeier", role = c("aut","cre"),
+	  	email="andreas.kiermeier@gmail.com"),
+   	    person("Peter", "Bloomfield", role = "ctb",
+		email = "Peter_Bloomfield@ncsu.edu"))
 Description: Provides functionality for creating and
 	evaluating acceptance sampling plans. Sampling plans can be single,
 	double or multiple.
