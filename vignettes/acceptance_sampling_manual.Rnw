@@ -895,12 +895,33 @@ achieved by taking measurements.  However, whether the additional
 effort required to take these measurements is worth the reduction in
 sample size will need to be assessed on a case by case basis.
 
+\section{Questions and Answer}
+\label{sec:questions}
+
+\textbf{Question:} For ISO 3951 (Inspection by Variables---so using \texttt{OCvar}), I would like to be able to calculate probability of acceptance (Pa) values for the OC curves for particular sample sizes.  So for example, for sample size code letter J, how do I calculate the chance of accepting a lot with 10\% nonconforming when the AQL is 1\% ? (sample size = 35)
+
+\textbf{Answer:} You've obtained the code letter J from Table I-A, which is based on a General Inspection Level II and a Lot size of 501--1200.  Looking at Table II-A (assuming the ``s'' method) you then get both the sample size ($n$) and acceptability constant ($k$), which in your case are $n=35$ and $k=1.89$.  You then enter these into \texttt{OCvar}, \emph{e.g.}
+<<>>=
+xn1 <- OCvar(n=35, k=1.89, s.type="unknown", pd=seq(0,0.2,by=0.01))
+@ 
+
+Note that I've capped pd at 20\% as in this case R throws warnings due to numerical accuracy for values over about 50%.
+Then use the summary function with the option 'full=TRUE', i.e.
+<<>>=
+summary(xn1, full=TRUE)
+@ 
+
+From here you get the value you're after, i.e. at \texttt{pd = 0.1} (=10\%) we have P(accept) = 0.0165 (=1.65\%).
+
+To check, we can also have a look at the standard Table V-J-1 of the standard (around page 35 in the Australian Standard equivalent version).
+The table is a bit 'strange', but basically 
+
+The AQL is given in columns and specific values of P(accept) are given in rows. So, for an AQL of 1\% and a P(accept) of also 1\% (closest to 1.65\% calcualted above), we get a proportion of defectives of 10.95\%.  From the output above, a proportion defective of 11\% (closest to 10.95\%) gives a P(accept) = 0.00975 or 0.975\%, which is close to 1\%. So the output and the standard agree (as best as they can, given the limitations of the tabulated values in the standard).
+
 \section{Future Direction}
 \label{sec:future-direction}
 
-A software package 
-can always be improved.  The following is a short list, in no specific order,
-of areas which are currently on the to-do list.
+A software package can always be improved.  The following is a short list, in no specific order, of areas which are currently on the to-do list.
 \begin{itemize}
 \item Inspection procedures are usually assumed to be perfect.  This
   is not always the case and \cite{johnson1991} provide the
