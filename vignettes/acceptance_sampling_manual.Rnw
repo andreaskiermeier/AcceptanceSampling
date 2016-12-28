@@ -895,7 +895,7 @@ achieved by taking measurements.  However, whether the additional
 effort required to take these measurements is worth the reduction in
 sample size will need to be assessed on a case by case basis.
 
-\section{Questions and Answer}
+\section{Questions and Answers}
 \label{sec:questions}
 
 \textbf{Question:} For ISO 3951 (Inspection by Variables---so using \texttt{OCvar}), I would like to be able to calculate probability of acceptance (Pa) values for the OC curves for particular sample sizes.  So for example, for sample size code letter J, how do I calculate the chance of accepting a lot with 10\% nonconforming when the AQL is 1\% ? (sample size = 35)
