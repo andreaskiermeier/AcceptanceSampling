@@ -668,15 +668,7 @@ lines(xp@pd, xp@paccept, col="red")
   \label{fig:oc-comp}
 \end{figure}
 
-\pagebreak Note that when using the Hypergeometric distribution, the
-default values are \code{N=100} and \code{pd=(0:100)/100} --- when
-changing the value of \code{N} you should also explicitly specify
-\code{pd} to ensure that \code{N*pd} contains only integer
-values.\footnote{Not changing \code{pd} can result in some unexpected
-  results --- these come directly from invoking the function
-  \code{phyper}, which is part of \proglang{R}.  This is because
-  \code{pd*N} should result in integer values, \ie the number of
-  defectives in the population.}
+\pagebreak Note that when using the Hypergeometric distribution, the default values are \code{N=100} and \code{pd=(0:100)/100} --- when changing the value of \code{N} you should also explicitly specify \code{pd} to ensure that \code{N*pd} contains only integer values.\footnote{Not changing \code{pd} can result in some unexpected results --- these come directly from invoking the function \code{phyper}, which is part of \proglang{R}.  This is because \code{pd*N} should result in integer values, \ie the number of defectives in the population.}  A warning is issued if \code{N} or \code{N*pd} are not integer, which is checked using the actual values rather than checking the storage type of these objects.
 
 In addition to drawing the sampling plan as shown in
 Figure~\ref{fig:oc-plot}, the second set of signatures

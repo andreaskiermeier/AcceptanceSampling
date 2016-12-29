@@ -60,7 +60,8 @@
   proportion of population defectives, such that \code{pd*N} gives the
   actual number of defectives in the population. If \code{N} or
   \code{pd} are not specified they take defaults of \code{N=100} and
-  \code{pd=seq(0, 1, 0.01)}.
+  \code{pd=seq(0, 1, 0.01)}.  A warning is issued if N and D=N*pd are
+  not integers by checking the value, not the object type.
 }
 
 \value{

@@ -23,7 +23,11 @@
 ##            were completely wrong.
 ##            Code now enumerates over all stages and all possible outcomes which
 ##            leadto additional sampling.
-##            
+## 29Dec16: * calc.OChypergeom: Included checking if N and D are integers. Issue
+##            warning if not (for backwards compatibility). Thanks to Thomas
+##            LaBone and Peter Bloomfield for raising the issue and suggesting
+##            a solution.
+##
 ## Notes:
 ## For implemented package use
 ## 
@@ -247,8 +251,17 @@ calc.OCbinomial.pdi <- function(pd,n,c,r)
 
 
 
-calc.OChypergeom <- function(n,c,r,N,D)
-{
+calc.OChypergeom <- function(n,c,r,N,D) {
+  ## Check that N and D are integer values. Issues warning if not.
+  ## Check preformed here rather than class validation for backwards
+  ## compatibility.
+  ## Use is.wholenumber function from R help file for "integer"
+  is.wholenumber <- function(x, tol = .Machine$double.eps^0.5){
+    abs(x - round(x)) < tol
+  }
+  if(!all(is.wholenumber(N), is.wholenumber(D))){
+    warning("N and D (or N*pd) should be integers.")
+  }
   p.acc <- sapply(D, FUN=calc.OChypergeom.pdi, n=n, c=c, r=r, N=N)
   p.acc
 }

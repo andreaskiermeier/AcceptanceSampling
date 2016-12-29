@@ -8,6 +8,7 @@
 ##          
 ## Changes:
 ## 21Aug07: * Created
+## 29Dec16: * find.plan: Included check for missing N for hypergeometric
 ## ----------------------------------------------------------------------
 
 setGeneric("assess", function(object, PRP, CRP, print=TRUE)
@@ -79,6 +80,9 @@ find.plan <- function(PRP, CRP,
   type <- match.arg(type)
   s.type <- match.arg(s.type)
 
+  ## Check that N is supplied for hypergeometric distribution
+  if(type=="hypergeom" & missing(N))
+    stop("N must be supplied for the hypergeometric distribution.")
   ## Needs checking that risk points are "valid" - use existing functions
   if (missing(PRP) | missing(CRP))
     stop("Poducer and Consumer Risk Points must be provided.")
