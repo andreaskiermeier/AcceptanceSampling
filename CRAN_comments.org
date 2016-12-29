@@ -1,0 +1,28 @@
+#+STARTUP: content indent hidestars fninline
+#+OPTIONS: toc:nil
+
+# LocalWords: kiermeier gmail PMI Cysticercosis organoleptic proglottids taeniasis
+
+# Based on suggestions by Hadley Wickham in his R packages book:
+# http://r-pkgs.had.co.nz/check.html
+
+* Version 1.0-5
+
+## Test environments
+- local Windows install, R 3.3.2
+- ubuntu 12.04.5 (on travis-ci), R 3.3.1
+- Debian Linux, R-devel, GCC (using R-hub builder)
+
+## R CMD check results
+There were no ERRORs or WARNINGs. 
+
+There was 1 NOTE:
+
+- checking sizes of PDF files under 'inst/doc' ... NOTE
+Unable to find GhostScript executable to run checks on size reduction
+
+
+## Downstream dependencies
+I have also run R CMD check on downstream dependencies of AcceptanceSampling.
+All packages passed.
+
