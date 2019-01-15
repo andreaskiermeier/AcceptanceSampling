@@ -27,6 +27,9 @@
 ##            warning if not (for backwards compatibility). Thanks to Thomas
 ##            LaBone and Peter Bloomfield for raising the issue and suggesting
 ##            a solution.
+## 14Jan19: * Fixed error in build for R 3.5.2 - Include "type" in
+##            representation, not just in the prototype, of the various OC2c
+##            objects.
 ##
 ## Notes:
 ## For implemented package use
@@ -96,7 +99,7 @@ setClass("OCbinomial",
          representation("OC2c",
                         pd="numeric"),
          contains="OC2c",
-         prototype=list("OC2c", type="binomial", pd=seq(0,1,by=0.01)),
+         prototype=list(n=NULL, c=NULL, r=NULL, paccept=NULL, type="binomial", pd=seq(0,1,by=0.01)),
          validity=function(object){
            ## Check that the proportion of defectives make sense
            if (any(is.na(object@pd)))
