@@ -27,6 +27,8 @@
 ##            warning if not (for backwards compatibility). Thanks to Thomas
 ##            LaBone and Peter Bloomfield for raising the issue and suggesting
 ##            a solution.
+## 15Jan19: * Change class definitions to avoid errors in latest R development
+##            build. 
 ##
 ## Notes:
 ## For implemented package use
@@ -96,7 +98,7 @@ setClass("OCbinomial",
          representation("OC2c",
                         pd="numeric"),
          contains="OC2c",
-         prototype=list("OC2c", type="binomial", pd=seq(0,1,by=0.01)),
+         prototype=prototype("OC2c", type="binomial", pd=seq(0,1,by=0.01)),
          validity=function(object){
            ## Check that the proportion of defectives make sense
            if (any(is.na(object@pd)))
@@ -110,7 +112,7 @@ setClass("OChypergeom",
                         N="numeric",
                         pd="numeric"),
          contains="OC2c",
-         prototype=list("OC2c", type="hypergeom", N=100, pd=(0:100)/100),
+         prototype=prototype("OC2c", type="hypergeom", N=100, pd=(0:100)/100),
          validity=function(object){
            ## Check that the population size of of length 1
            if (length(object@N) > 1)
@@ -134,7 +136,7 @@ setClass("OCpoisson",
          representation("OC2c",
                         pd="numeric"),
          contains="OC2c",
-         prototype=list("OC2c", type="poisson",pd=seq(0,1,0.01)),
+         prototype=prototype("OC2c", type="poisson",pd=seq(0,1,0.01)),
          validity=function(object){
            ## Check that the proportion of defectives make sense
            if (any(is.na(object@pd)))
