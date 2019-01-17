@@ -17,6 +17,8 @@
 ##            normal variables sampling plans
 ##          * Added function {find.plan} to find smallest sampling plan
 ##            for given Producer and Consumer Risk Points
+## 15Jan19: * Change class definitions to avoid errors in latest R development
+##            build. 
 ## ----------------------------------------------------------------------
 
 ## --------------------------------------------------------------------------------
@@ -50,7 +52,7 @@ setClass("OCnormal",
                         pd="numeric",
                         s.type="character"),
          contains="OCvar",
-         prototype=list("OCvar",type="normal",pd=seq(0,1,by=0.01),s.type="known"),
+         prototype=prototype("OCvar",type="normal",pd=seq(0,1,by=0.01),s.type="known"),
          validity=function(object){
 ##            ## Check that the standard deviation is positive
 ##            if (length(object@s) > 1)
