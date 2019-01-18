@@ -28,8 +28,7 @@
 ##            LaBone and Peter Bloomfield for raising the issue and suggesting
 ##            a solution.
 ## 15Jan19: * Change class definitions to avoid errors in latest R development
-##            build.
-## 18Jan19: * Remove use of representation()
+##            build. 
 ##
 ## Notes:
 ## For implemented package use
@@ -47,20 +46,20 @@
 ## Class definitions
 ## ----------------------------------------------------------------------
 
-setClass("OC2c", slots=list(n="numeric", ## A vector of sample sizes at each
-                            ## stage of sampling
-                            ## NOT CUMULATIVE
-                            c="numeric", ## vector of acceptance numbers for
-                            ## each stage of sampling. Accept if actual number
-                            ## of defectives/defects is <= c
-                            ## CUMULATIVE
-                            r="numeric", ## vector of rejection numbers for
-                            ## each stage of sampling. Reject if actual number
-                            ## of defectives/defects is >= r
-                            ## CUMULATIVE
-                            type="character",
-                            paccept="numeric",
-                            "VIRTUAL"),
+setClass("OC2c", representation(n="numeric", ## A vector of sample sizes at each
+                                ## stage of sampling
+                                ## NOT CUMULATIVE
+                                c="numeric", ## vector of acceptance numbers for
+                                ## each stage of sampling. Accept if actual number
+                                ## of defectives/defects is <= c
+                                ## CUMULATIVE
+                                r="numeric", ## vector of rejection numbers for
+                                ## each stage of sampling. Reject if actual number
+                                ## of defectives/defects is >= r
+                                ## CUMULATIVE
+                              type="character",
+                              paccept="numeric",
+                              "VIRTUAL"),
          validity=function(object){
            if(any(is.na(object@n)) | any(is.na(object@c)) |
               any(is.na(object@r)))
@@ -96,8 +95,8 @@ setClass("OC2c", slots=list(n="numeric", ## A vector of sample sizes at each
          })
 
 setClass("OCbinomial",
-         slots=list("OC2c",
-                    pd="numeric"),
+         representation("OC2c",
+                        pd="numeric"),
          contains="OC2c",
          prototype=prototype("OC2c", type="binomial", pd=seq(0,1,by=0.01)),
          validity=function(object){
@@ -109,9 +108,9 @@ setClass("OCbinomial",
          })
 
 setClass("OChypergeom",
-         slots=list("OC2c",
-                    N="numeric",
-                    pd="numeric"),
+         representation("OC2c",
+                        N="numeric",
+                        pd="numeric"),
          contains="OC2c",
          prototype=prototype("OC2c", type="hypergeom", N=100, pd=(0:100)/100),
          validity=function(object){
@@ -134,8 +133,8 @@ setClass("OChypergeom",
          })
 
 setClass("OCpoisson",
-         slots=list("OC2c",
-                    pd="numeric"),
+         representation("OC2c",
+                        pd="numeric"),
          contains="OC2c",
          prototype=prototype("OC2c", type="poisson",pd=seq(0,1,0.01)),
          validity=function(object){
