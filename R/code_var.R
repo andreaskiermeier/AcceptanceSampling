@@ -25,12 +25,12 @@
 ## Variables Sampling Plans
 ## --------------------------------------------------------------------------------
 
-setClass("OCvar", slots=list(n="numeric", ## A vector of sample sizes at each
+setClass("OCvar", representation(n="numeric", ## A vector of sample sizes at each
                                  ## stage of sampling - NOT comulative sample size
                                  k="numeric", ## vector used to determine acceptance
                                  type="character",
-                                 paccept="numeric"),
-         virtual=TRUE,
+                                 paccept="numeric",
+                              "VIRTUAL"),
          validity=function(object){
            if(any(is.na(object@n)) | any(is.na(object@k)) )
              return("Missing values in 'n' or 'k'")
