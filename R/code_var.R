@@ -19,18 +19,22 @@
 ##            for given Producer and Consumer Risk Points
 ## 15Jan19: * Change class definitions to avoid errors in latest R development
 ##            build. 
+## 21Jan19: * Cleaned up class definitions; changed "representation(...)" to
+##            "slots=c(...)" and included " contains="VIRTUAL" " (for virtual
+##            class.
 ## ----------------------------------------------------------------------
 
 ## --------------------------------------------------------------------------------
 ## Variables Sampling Plans
 ## --------------------------------------------------------------------------------
 
-setClass("OCvar", representation(n="numeric", ## A vector of sample sizes at each
-                                 ## stage of sampling - NOT comulative sample size
-                                 k="numeric", ## vector used to determine acceptance
-                                 type="character",
-                                 paccept="numeric",
-                              "VIRTUAL"),
+setClass("OCvar",
+         slots=c(n="numeric", ## A vector of sample sizes at each
+                 ## stage of sampling - NOT comulative sample size
+                 k="numeric", ## vector used to determine acceptance
+                 type="character",
+                 paccept="numeric"),
+         contains="VIRTUAL",
          validity=function(object){
            if(any(is.na(object@n)) | any(is.na(object@k)) )
              return("Missing values in 'n' or 'k'")
@@ -48,9 +52,7 @@ setClass("OCvar", representation(n="numeric", ## A vector of sample sizes at eac
          })
 
 setClass("OCnormal",
-         representation("OCvar",
-                        pd="numeric",
-                        s.type="character"),
+         slots=c(pd="numeric", s.type="character"),
          contains="OCvar",
          prototype=prototype("OCvar",type="normal",pd=seq(0,1,by=0.01),s.type="known"),
          validity=function(object){
