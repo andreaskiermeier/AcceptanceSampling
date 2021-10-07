@@ -1,8 +1,8 @@
 Package: AcceptanceSampling
 Type: Package
 Title: Creation and Evaluation of Acceptance Sampling Plans
-Version: 1.0-6
-Date: 2019-01-21
+Version: 1.0-7
+Date: 2021-10-06
 Authors@R: c(person("Andreas", "Kiermeier", role = c("aut","cre"),
 	  	email="Andreas.Kiermeier@gmail.com"),
    	    person("Peter", "Bloomfield", role = "ctb",

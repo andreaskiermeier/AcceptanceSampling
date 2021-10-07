@@ -7,12 +7,12 @@ citEntry(entry = "Article",
   year         = "2008",
   volume       = "26",
   number       = "6",
-  url          = "http://www.jstatsoft.org/v26/i06/",
+  doi          = "10.18637/jss.v026.i06",
 
   textVersion  =
   paste("Andreas Kiermeier (2008).",
         "Visualising and Assessing Acceptance Sampling Plans: The R Package AcceptanceSampling.",
         "Journal of Statistical Software 26(6).",
-        "URL http://www.jstatsoft.org/v26/i06/.")
+        "DOI doi.org/10.18637/jss.v026.i06.")
 )
 
