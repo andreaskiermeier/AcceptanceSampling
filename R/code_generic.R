@@ -9,6 +9,7 @@
 ## Changes:
 ## 21Aug07: * Created
 ## 29Dec16: * find.plan: Included check for missing N for hypergeometric
+## 06Apr22: * find.k: Include interval=c(0,1000) in call to find.k
 ## ----------------------------------------------------------------------
 
 setGeneric("assess", function(object, PRP, CRP, print=TRUE)
@@ -153,7 +154,7 @@ find.plan <- function(PRP, CRP,
       pa <- 1- pt(k*sqrt(n), df=n-1, ncp=-qnorm(CRP[1])*sqrt(n))
       while(pa > CRP[2]){
         n <- n+1
-        k <- find.k(n, PRP[1], PRP[2])
+        k <- find.k(n, PRP[1], PRP[2], interval=c(0,1000))
         pa <- 1-pt(k*sqrt(n), df=n-1, ncp=-qnorm(CRP[1])*sqrt(n))
       }
       return(list(n=n, k=k, s.type=s.type))
