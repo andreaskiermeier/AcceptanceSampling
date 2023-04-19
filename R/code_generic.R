@@ -95,7 +95,9 @@ find.plan <- function(PRP, CRP,
     stop("Consumer Risk Point - Quality and/or desired P(accept) out of bounds")
   else if(CRP[1] <= PRP[1])
     stop("Consumer Risk Point quality must be greater than Producer Risk Point quality")
-
+#  else if(CRP[2] > PRP[2])
+#    stop("Consumer Risk Point P(accept) must be less than or equal to Producer Risk Point P(accept)")
+  
   ## Attributes Sampling Plan - Binomial distribution
   if (type == "binomial") {
     c <- 0
