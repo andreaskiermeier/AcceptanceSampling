@@ -1,3 +1,6 @@
 ^\.travis\.yml$
 ^CRAN_comments\.org$
 ^revdep$
+^.*\.Rproj$
+^\.Rproj\.user$
+^AcceptanceSampling\.Rproj$

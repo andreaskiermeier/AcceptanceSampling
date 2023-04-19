@@ -47,3 +47,5 @@ Temporary Items
 
 #Reverse dependency folder
 revdep/
+.Rproj.user
+AcceptanceSampling.Rproj
