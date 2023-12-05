@@ -32,6 +32,9 @@
 ## 21Jan19: * Cleaned up class definitions; changed "representation(...)" to
 ##            "slots=c(...)" and included " contains="VIRTUAL" " (for virtual
 ##            class.
+## 05Dec23: * Fixed bug related to decision making when multiple sample stages
+##            are used. Problem occurs when more stages are specified than needed.
+##            Thanks to Walter Hoyer for reporting this.
 ##
 ## Notes:
 ## For implemented package use
@@ -90,9 +93,18 @@ setClass("OC2c", slots=c(n="numeric", ## A vector of sample sizes at each
              if (any(diff(object@r)<0) )
                return("'r' must be non-decreasing")
            }
-           ## Check that a decision is made on the last sample
-           if (object@r[l] != object@c[l] + 1)
-             return("Decision from last sample cannot be made: r != c+1")
+           ## Check that a decision is made on the last stage, and only on
+           ## the last stage.  At the last stage, and only then, should
+           ## the difference between r and c equal to 1.  The value of m will
+           ## be NA if a decision cannot be made and TRUE if a decision can be
+           ## made before the last stage
+           m <- match(1, (object@r-object@c)) < l 
+           if (is.na(m))
+             return("Decision from last stage cannot be made: r[l] > c[l]+1")
+           else if (m)
+             return("Too many stages specified - decision is made before the last stage.")
+           # if (object@r[l] != object@c[l] + 1)
+           #   return("Decision from last sample cannot be made: r != c+1")
            ## Otherwise things seem fine.
            return(TRUE)
          })
