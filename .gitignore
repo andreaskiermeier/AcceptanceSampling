@@ -49,3 +49,7 @@ Temporary Items
 revdep/
 .Rproj.user
 AcceptanceSampling.Rproj
+.Rhistory
+.Rdata
+.httr-oauth
+.quarto
