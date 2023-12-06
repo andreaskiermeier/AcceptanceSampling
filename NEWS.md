@@ -1,3 +1,5 @@
+# AcceptanceSampling (development version)
+
 # AcceptanceSampling 1.0-10
 
 * Added a `NEWS.md` file to track changes to the package.
