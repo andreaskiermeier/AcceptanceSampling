@@ -14,3 +14,5 @@ Depends: methods, R(>= 2.4.0), stats
 Imports: graphics, utils
 License: GPL (>= 3)
 LazyLoad: yes
+URL: https://github.com/andreaskiermeier/AcceptanceSampling
+BugReports: https://github.com/andreaskiermeier/AcceptanceSampling/issues
