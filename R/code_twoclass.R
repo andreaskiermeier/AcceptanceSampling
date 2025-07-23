@@ -35,17 +35,11 @@
 ## 05Dec23: * Fixed bug related to decision making when multiple sample stages
 ##            are used. Problem occurs when more stages are specified than needed.
 ##            Thanks to Walter Hoyer for reporting this.
+## 23Jul25: * Fixed bug related to hypergeometric distribution when multiple
+##            sampling stages are used. Warnings occurred when the reduced
+##            population size N (at stage 2 or more) was less than D. Changed the
+##            use of N-pmax(D,0) to pmax(N-D, 0).
 ##
-## Notes:
-## For implemented package use
-## 
-## getFromNamespace(paste("calc.",OCtype,sep=""), ns="AcceptanceSampling")
-##
-## while for testing directly use
-##
-## get(paste("calc.",OCtype,sep=""))
-##
-## There are THREE (3) of these instances
 ## ----------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------
@@ -266,7 +260,7 @@ calc.OCbinomial.pdi <- function(pd,n,c,r)
 
 calc.OChypergeom <- function(n,c,r,N,D) {
   ## Check that N and D are integer values. Issues warning if not.
-  ## Check preformed here rather than class validation for backwards
+  ## Check performed here rather than class validation for backwards
   ## compatibility.
   ## Use is.wholenumber function from R help file for "integer"
   is.wholenumber <- function(x, tol = .Machine$double.eps^0.5){
@@ -301,8 +295,8 @@ calc.OChypergeom.pdi <- function(D,n,c,r,N)
     D.cum <- D-c(0,x.cum[1:k1])
 
     prod(dhyper(x=x[1:k1], m=pmax(D.cum[1:k1],0),
-                n=N.cum[1:k1]-pmax(D.cum[1:k1],0), k=n[1:k1]))*
-      phyper(q=x[k], m=pmax(D.cum[k],0), n=N.cum[k]-pmax(D.cum[k],0), k=n[k])
+                n=pmax(N.cum[1:k1]-D.cum[1:k1],0), k=n[1:k1]))*
+      phyper(q=x[k], m=pmax(D.cum[k],0), n=pmax(N.cum[k]-D.cum[k],0), k=n[k])
   }
 
   
